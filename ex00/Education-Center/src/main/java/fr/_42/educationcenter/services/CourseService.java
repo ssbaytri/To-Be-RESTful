@@ -151,6 +151,9 @@ public class CourseService {
     public void removeTeacher(Long courseId, Long teacherId) {
         Course course = findCourse(courseId);
         User teacher = findUser(teacherId);
+        if (!course.getTeachers().contains(teacher)) {
+            throw new NotFoundException("Teacher not in course");
+        }
         course.getTeachers().remove(teacher);
     }
 
@@ -175,6 +178,9 @@ public class CourseService {
     public void removeStudent(Long courseId, Long studentId) {
         Course course = findCourse(courseId);
         User student = findUser(studentId);
+        if (!course.getStudents().contains(student)) {
+            throw new NotFoundException("Student not in course");
+        }
         course.getStudents().remove(student);
     }
 
