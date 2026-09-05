@@ -139,4 +139,3 @@ mvn test
 ## Notes
 
 - Spring Data REST is **not** used for this exercise.
-- `data.sql` currently seeds the `users` table (5 users: 1 admin, 2 teachers, 2 students).
