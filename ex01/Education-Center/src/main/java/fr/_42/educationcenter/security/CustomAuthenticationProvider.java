@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class CustomAuthenticationProvider extends AuthenticationProvider {
+public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     private final UserRepository userRepository;
 
