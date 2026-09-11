@@ -81,14 +81,13 @@ Education-Center/
 ## Running the app
 
 1. PostgreSQL database `education_center` (config in `application.properties`).
-2. `data.sql` seeds users (`ON CONFLICT (login) DO NOTHING`).
-3. Run:
+2. Run:
 
 ```bash
 mvn spring-boot:run
 ```
 
-4. Swagger UI: `http://localhost:8080/swagger-ui/index.html`
+3. Swagger UI: `http://localhost:8080/swagger-ui/index.html`
 
 ## Tests
 
