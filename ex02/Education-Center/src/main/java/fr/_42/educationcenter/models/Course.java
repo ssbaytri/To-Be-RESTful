@@ -32,6 +32,10 @@ public class Course {
     @Column(columnDefinition = "text")
     private String description;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "state", nullable = false)
+    private CourseState state = CourseState.DRAFT;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "course_teachers",

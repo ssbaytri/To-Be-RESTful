@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/**").hasRole("ADMINISTRATOR")
                         .requestMatchers(HttpMethod.PUT, "/**").hasRole("ADMINISTRATOR")
                         .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMINISTRATOR")
+                        .requestMatchers("/", "/explorer/**", "/webjars/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
