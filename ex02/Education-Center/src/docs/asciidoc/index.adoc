@@ -1,0 +1,60 @@
+= Education Center API
+:doctype: book
+:toc: left
+:toclevels: 2
+:sectnums:
+:source-highlighter: highlightjs
+:table-stripes: even
+
+This document describes the Education Center REST API. Resources are
+exposed using Spring Data REST (HAL format) under the `/` root path and are
+secured with JWT bearer tokens.
+
+== Overview
+
+The Education Center manages courses, lessons and users.
+
+[cols="1,4"]
+|===
+| Media type | `application/hal+json`
+| Reads | require an authenticated user
+| Writes | require the `ADMINISTRATOR` role
+| Errors | returned as JSON with the matching `4xx` status
+|===
+
+== Course publishing
+
+Publishing moves a course from `DRAFT` to `PUBLISHED`. Only a `DRAFT`
+course can be published; publishing an already published course fails with
+`400 Bad Request`.
+
+=== Publish a course
+
+Publishes a course and returns the full HAL resource of the published
+course, from which the `publish` link has been removed.
+
+[cols="2,6"]
+|===
+| Resource | `POST /courses/{id}/publish`
+| Role required | `ADMINISTRATOR`
+| State transition | `DRAFT -> PUBLISHED`
+| Success status | `200 OK`
+|===
+
+==== Path parameters
+
+include::{snippets}/course-publish/path-parameters.adoc[]
+
+==== Example request
+
+include::{snippets}/course-publish/curl-request.adoc[]
+
+include::{snippets}/course-publish/http-request.adoc[]
+
+==== Example response
+
+include::{snippets}/course-publish/http-response.adoc[]
+
+==== Response fields
+
+include::{snippets}/course-publish/response-fields.adoc[]
