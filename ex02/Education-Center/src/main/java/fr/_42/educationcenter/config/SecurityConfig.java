@@ -33,13 +33,13 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.GET, "/", "/profile", "/explorer/**", "/webjars/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/signUp").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/**").hasRole("ADMINISTRATOR")
                         .requestMatchers(HttpMethod.PUT, "/**").hasRole("ADMINISTRATOR")
                         .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMINISTRATOR")
-                        .requestMatchers("/", "/explorer/**", "/webjars/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
